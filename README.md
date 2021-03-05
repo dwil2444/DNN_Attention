@@ -6,3 +6,5 @@ Report attached below:
 ![alt text](report/page1.png)
 
 ![alt text](report/page2.png)
+
+![alt text](report/page3.png)

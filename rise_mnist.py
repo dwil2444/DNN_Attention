@@ -5,6 +5,7 @@ from skimage.transform import resize
 import numpy as np
 from utils.helper import GetDevice, CleanCuda
 from nets.fmnet import Net
+from torch import optim 
 
 
 device = GetDevice();

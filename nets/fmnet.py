@@ -1,9 +1,4 @@
-import torchvision
 import torchvision.transforms.functional as F
-import torchvision.models as models
-import torchvision.datasets as datasets
-import torchvision.transforms as transforms
-import torch as torch
 import torch.nn as nn
 
 
@@ -31,7 +26,6 @@ class Net(nn.Module):
 
         
     def forward(self, x):
-        print(x.shape)
         x = self.relu(self.conv(x))
         x = self.MaxPool2d(x)
         x = x.view(-1, 30* 13*13)

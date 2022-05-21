@@ -35,7 +35,7 @@ def train(model, device, optimizer, criterion ,dataloader,
     for e in range(num_epochs):
         cum_acc = 0
         total_train = 0
-        running_loss =0
+        running_loss = 0
         for images, labels in dataloader:
             total_train += images.shape[0]
             images = images.to(device)
@@ -53,18 +53,15 @@ def train(model, device, optimizer, criterion ,dataloader,
             torch.save(model.state_dict(), weightdir + 'params.pth')
             prev_loss = running_loss
         print(f"Accuracy: {cum_acc/total_train}")
-        print(f"Training loss: {running_loss}")
-            
-
-
+        print(f"Training loss: {running_loss}")            
 
 
 def main():
-    bs = 512
-    lr = 0.001
-    weightdir = './weights/'
+    bs = args.batch_size
+    lr = args.lr
+    weightdir = args.weightdir
     CleanCuda()
-    device = GetDevice()
+    device = args.device
     transform=transforms.Compose([ transforms.ToTensor(), ])
     mnist_trainset = datasets.FashionMNIST(root='./data', train=True, download=True, transform=transform)
     model = Net()
@@ -75,13 +72,18 @@ def main():
     train(model, device, optimizer, criterion, trainloader, 10, weightdir)
     
 
-
-
-
-
 if __name__ == '__main__':
     import argparse
     import os
+    parser = argparse.ArgumentParser(description='Training params')
+    parser.add_argument('--batch-size', type=int, default=8,
+                        help='batch size (default: 8)')
+    parser.add_argument('--lr', type=float, default=3e-4,
+                        help='learning rate for Adam optimizer (default: 0.001)')      
+    parser.add_argument('--weightdir', type=str, default='./weights/',
+                        help='name of the output folder for the model weights')
+    args = parser.parse_args()
+    args.device = GetDevice()
     main()
 
 

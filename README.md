@@ -11,7 +11,7 @@ Title | Author | Conf | Notes | Link
 **Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization.** | RR Selvaraju, M Cogswell, A Das, R Vedantam, D Parikh, D Batr | ICCV 2017 | GRAD-CAM technique for saliency which tracks gradient changes by sampling feature maps. | https://arxiv.org/pdf/1610.02391.pdf |
 | **On Guiding Visual Attention with Language Specification** | S Petryk, L Dunlap, K Nasseri, J Gonzalez, T Darrell, A Rohrbach | arXiv preprint arXiv:2202.08926 | Training for Saliency with augmented loss functions. | https://arxiv.org/pdf/2202.08926.pdf |
 
-Run [setup.sh]() to install the dependencies required.
+Run [setup.sh](https://github.com/dwil2444/DNN_Attention/blob/master/setup.sh) to install the dependencies required.
 
 The [train.py](https://github.com/dwil2444/DNN_Attention/blob/master/train.py) script will 
 train a CNN for classification on Fashion-MNIST. 

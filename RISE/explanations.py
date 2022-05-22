@@ -7,13 +7,20 @@ from utils.helper import GetDevice
 
 
 def generate_masks(N, s, p1):
+    """
+    param: N
+
+    param: s 
+
+    param: p1
+    """
     cell_size = np.ceil(np.array((28 ,28)) / s)
     up_size = (s + 1) * cell_size
 
     grid = np.random.rand(N, s, s) < p1
     grid = grid.astype('float32')
 
-    masks = np.empty((N,*(28, 28)))
+    masks = np.empty((N, *(28, 28)))
 
     for i in tqdm(range(N), desc='Generating masks'):
         # Random shifts
@@ -27,6 +34,8 @@ def generate_masks(N, s, p1):
 
 
 def explain(model, inp, masks, N, p1):
+    """
+    """
     device = GetDevice()
     preds = []
     # Make sure multiplication is being done for correct axes

@@ -12,11 +12,11 @@ from RISE.explanations import generate_masks, explain
 import torchvision.transforms as transforms
 
 
-
 def explain_instance():
     """
     """
-    model = Net()
+    device = GetDevice()
+    model = Net().to(device)
     model.load_state_dict(torch.load('./weights/params.pth'))
     model.eval()
     transform=transforms.Compose([
@@ -30,7 +30,13 @@ def explain_instance():
     img = mnist_valset[1][0]
     label = mnist_valset[1][1]
     sal = explain(model, img, masks, N, p1)
-    print(sal.shape)
+    ans = sal[label]
+    disp = img.squeeze().cpu().detach().numpy()
+    plt.imshow(disp, cmap='gray')
+    plt.imshow(ans, cmap='jet', alpha=0.5)
+    plt.colorbar()
+    plt.show()
+    # retun
 
 
 def main():

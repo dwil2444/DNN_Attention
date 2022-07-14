@@ -82,6 +82,8 @@ if __name__ == '__main__':
                         help='learning rate for Adam optimizer (default: 0.001)')      
     parser.add_argument('--weightdir', type=str, default='./weights/',
                         help='name of the output folder for the model weights')
+    parser.add_argument('--num_epochs',  type=int, default=3,
+                        help='number of epochs (default:3)')
     args = parser.parse_args()
     args.device = GetDevice()
     main()

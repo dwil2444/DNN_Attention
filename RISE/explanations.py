@@ -8,11 +8,15 @@ from utils.helper import GetDevice
 
 def generate_masks(N, s, p1):
     """
-    param: N
+    param: N: the number of 
+    masks to generate
 
-    param: s 
+    param: s: the size of the 
+    masks : [hxw]
 
-    param: p1
+    param: p1: the proportion
+    of pixels in the image 
+    to mask
     """
     cell_size = np.ceil(np.array((28 ,28)) / s)
     up_size = (s + 1) * cell_size
@@ -35,6 +39,19 @@ def generate_masks(N, s, p1):
 
 def explain(model, inp, masks, N, p1):
     """
+    param: model: the neural architecture
+
+    param: inp: the input image
+
+    param: masks: the "masks" generated from
+    the generate_masks function
+
+    param: N: the number of 
+    masks to generate
+
+    param: p1: the proportion
+    of pixels in the image 
+    to mask
     """
     device = GetDevice()
     preds = []

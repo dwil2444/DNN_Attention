@@ -27,15 +27,15 @@ def explain_instance():
     p1 = 0.50
     masks = generate_masks(N, s, p1)
     masks = masks.squeeze(3)
-    img = mnist_valset[1][0]
-    label = mnist_valset[1][1]
+    img = mnist_valset[0][0]
+    label = mnist_valset[0][1]
     sal = explain(model, img, masks, N, p1)
     ans = sal[label]
     disp = img.squeeze().cpu().detach().numpy()
     plt.imshow(disp, cmap='gray')
     plt.imshow(ans, cmap='jet', alpha=0.5)
     plt.colorbar()
-    plt.show()
+    plt.savefig('view.png')
     # retun
 
 

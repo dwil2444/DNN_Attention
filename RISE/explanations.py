@@ -4,6 +4,7 @@ import torch.nn as nn
 from skimage.transform import resize
 from tqdm import tqdm
 from utils.helper import GetDevice
+# np.random.seed(0)
 
 
 def generate_masks(N, s, p1):
@@ -18,6 +19,7 @@ def generate_masks(N, s, p1):
     of pixels in the image 
     to mask
     """
+    np.random.seed(1234)
     cell_size = np.ceil(np.array((28 ,28)) / s)
     up_size = (s + 1) * cell_size
 
@@ -63,7 +65,9 @@ def explain(model, inp, masks, N, p1):
         masked = torch.tensor(masked).float()
         masked = masked.to(device)
         preds.append(model(masked[i:min(i+1, N)]).cpu().detach().numpy())
+    # preds is now a list of scores over the masked images
     preds = np.concatenate(preds)
+    # preds is concatenated to N x number of classes
     sal = preds.T.dot(masks.reshape(N, -1)).reshape(-1, *(28, 28))
     sal = sal / N / p1
     return sal

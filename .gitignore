@@ -193,6 +193,6 @@ fabric.properties
 
 data/
 
-weights/*
 
+weights/*
 *.png

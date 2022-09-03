@@ -22,9 +22,9 @@ def explain_instance():
     transform=transforms.Compose([
         transforms.ToTensor(),])
     mnist_valset = datasets.FashionMNIST(root='./data', train=False, download=True, transform=transform)
-    N = 2000
+    N = 200000
     s = 8
-    p1 = 0.50
+    p1 = 0.5
     masks = generate_masks(N, s, p1)
     masks = masks.squeeze(3)
     img = mnist_valset[1][0]
@@ -35,7 +35,7 @@ def explain_instance():
     plt.imshow(disp, cmap='gray')
     plt.imshow(ans, cmap='jet', alpha=0.5)
     plt.colorbar()
-    plt.show()
+    plt.savefig('view_softmax.png')
     # retun
 
 
